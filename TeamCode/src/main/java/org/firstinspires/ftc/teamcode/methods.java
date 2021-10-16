@@ -19,7 +19,8 @@ public class methods extends hardWareMap {
         opModeObj = opMode;
 
     }
- /*----------------------------------------Ready for use, do not change-----------------------------------------------------------------------*/
+
+    /*-------------------------------Ready for use, do not change--------------------------------*/
     public void Holonomic() {
 
         double rightActual;
@@ -47,7 +48,7 @@ public class methods extends hardWareMap {
                 (Math.atan2(opModeObj.gamepad1.left_stick_x,
                         opModeObj.gamepad1.left_stick_y) > -1.57)) {
 
-            joyStick = -(Math.hypot(opModeObj.gamepad1.left_stick_x,
+            joyStick = Math.abs(Math.hypot(opModeObj.gamepad1.left_stick_x,
                     opModeObj.gamepad1.left_stick_y));
 
         } else {
@@ -175,13 +176,27 @@ public class methods extends hardWareMap {
         robot.fLeft.setPower(0);
         robot.bLeft.setPower(0);
         robot.bRight.setPower(0);
-    }/*-----------------------------------------------------Still in Development--------------------------------------------------------------------*/
-    public void smartIntake(double power) {
-      if(opModeObj.gamepad1.x) {
-          robot.intake.setPower(power/2);
-      } else if (robot.opmode){
-
-        }
-
-        }
     }
+   /* public void diagnostic(){
+        int conversion;
+        if(opModeObj.gamepad)
+
+        robot.bLeft.setPower(opModeObj.gamepad1.left_bumper);
+        robot.fRight.setPower(opModeObj.game)
+    }                                    */
+    /*--------------------------------------------Still in Development--------------------------*/
+
+    public void smartIntake(double power) {
+        if (opModeObj.gamepad1.x) {
+            robot.intake.setPower(power / 2);
+        } else if (opModeObj.gamepad1.a) {
+            robot.intake.setPower(power);
+        } else if ((opModeObj.gamepad2.a) && (opModeObj.gamepad1.x)) {
+            robot.intake.setPower(0);
+        } else {
+            robot.intake.setPower(0);
+        }
+
+
+    }
+}
